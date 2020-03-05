@@ -1,15 +1,14 @@
-<a href="https://marketplace.visualstudio.com/items?itemName=mblode.twig-language-2">
+This is a fork from the <a href="https://marketplace.visualstudio.com/items?itemName=mblode.twig-language-2">original by mblonde</a> with some snippet changes.
+
+<!-- <a href="https://marketplace.visualstudio.com/items?itemName=mblode.twig-language-2">
   <img src="https://github.com/mblode/vscode-twig-language-2/blob/master/images/icon.png?raw=true" alt="" width=100 height=100>
-</a>
+</a> -->
 
 <h1>VS Code Twig Language 2 👋</h1>
 
 <p>
   <img src="https://img.shields.io/badge/version-0.8.8-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/mblode/vscode-twig-language-2/graphs/commit-activity">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
-  </a>
-  <a href="https://github.com/mblode/vscode-twig-language-2/blob/master/LICENSE.md">
+  <a href="https://github.com/aNickzz/vscode-twig-language-2/blob/master/LICENSE.md">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
   </a>
 </p>
@@ -205,15 +204,21 @@ info            All craft globals (site info, date, users, template tags)
 
 ```
 
-## Author
+## Author (this fork)
+
+👤 **Nicholas Sorokin**
+
+- Github: [@aNickzz](https://github.com/aNickzz)
+
+## Author (original)
 
 👤 **Matthew Blode**
 
-* Github: [@mblode](https://github.com/mblode)
+- Github: [@mblode](https://github.com/mblode)
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome !<br />Feel free to check [issues page](https://github.com/mblode/vscode-twig-language-2/issues).
+Contributions, issues and feature requests are welcome !<br />Feel free to check [issues page](https://github.com/aNickzz/vscode-twig-language-2/issues).
 
 ## Show your support
 
@@ -221,5 +226,7 @@ Give a ⭐️ if this project helped you !
 
 ## 📝 License
 
+<!-- TODO: copyright? -->
+
 Copyright © 2019 [Matthew Blode](https://github.com/mblode).<br />
-This project is [MIT](https://github.com/mblode/vscode-twig-language-2/blob/master/LICENSE.md) licensed.
+This project is [MIT](https://github.com/aNickzz/vscode-twig-language-2/blob/master/LICENSE.md) licensed.
