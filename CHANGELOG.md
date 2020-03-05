@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.8.2] - 2020-03-05
+
+### Added
+
+- Set the "extensionKind" property to "ui"
+
+## [0.8.1] - 2020-03-05
+
+### Changed
+
+- Removed trailing newlines from snippets
+
 ## [0.8.0] - 2019-04-17
 
 ### Changed
