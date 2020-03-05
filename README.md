@@ -1,4 +1,4 @@
-This is a fork from the <a href="https://marketplace.visualstudio.com/items?itemName=mblode.twig-language-2">original by mblonde</a> with some snippet changes.
+This is a fork from the <a href="https://marketplace.visualstudio.com/items?itemName=mblode.twig-language-2">original by mblode</a> with some snippet changes.
 
 <!-- <a href="https://marketplace.visualstudio.com/items?itemName=mblode.twig-language-2">
   <img src="https://github.com/mblode/vscode-twig-language-2/blob/master/images/icon.png?raw=true" alt="" width=100 height=100>
