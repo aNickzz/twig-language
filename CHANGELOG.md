@@ -2,13 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.8.2] - 2020-03-05
+## [0.10.0] - 2020-03-06
+
+### Removed
+
+- Removed Pretty Diff; it has a number of bugs, it doesn't respect whitespace, and at the time of writing hasn't seen any major improvements for nearly a year. You're better off not using it.
+
+## [0.9.2] - 2020-03-05
 
 ### Added
 
 - Set the "extensionKind" property to "ui"
 
-## [0.8.1] - 2020-03-05
+## [0.9.1] - 2020-03-05
 
 ### Changed
 

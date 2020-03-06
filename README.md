@@ -16,7 +16,6 @@ This is a fork from the <a href="https://marketplace.visualstudio.com/items?item
 - Syntax highlighting
 - Snippets
 - Emmet
-- Pretty Diff 3 Formatting
 - Hover
 
 ## What has changed since version 1?
@@ -44,15 +43,11 @@ Install through Visual Studio Code extensions. Search for `Twig Language 2`
 
 ## Documentation
 
-Twig Language 2 is a Visual Studio Code extension that provides snippets, syntax highlighting, hover, and formatting for the Twig file format.
+Twig Language 2 is a Visual Studio Code extension that provides snippets, syntax highlighting, and hover for the Twig file format.
 
 ### Twig syntax highlighting and language support
 
 This extension provides language support for the Twig syntax.
-
-### Code formatter/beautifier for Twig files
-
-Using PrettyDiff, this extension implements the only working code formatter for Twig files in VS Code.
 
 ### Information about Twig code on hover
 

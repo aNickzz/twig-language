@@ -3,7 +3,6 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var vscode = _interopDefault(require('vscode'));
-var prettydiff = _interopDefault(require('prettydiff'));
 
 const abs={text:"abs",body:"abs",description:"filter returns the absolute value"};const batch={prefix:"batch",body:"batch(${size}, ${fill})",text:"batch(size, fill)",description:"filter \"batches\" items by returning a list of lists with the given number of items. A second parameter can be provided and used to fill in missing items"};const capitalize={text:"capitalize",body:"capitalize",description:"filter capitalizes a value. The first character will be uppercase, all others lowercase"};const convert_encoding={prefix:"convert_encoding",body:"convert_encoding('${to}', '${from}')",text:"convert_encoding('to', 'from')",description:"filter converts a string from one encoding to another. The first argument is the expected output charset and the second one is the input charset"};const date={prefix:"date",body:"date(\"${m/d/Y}\")",text:"date(\"m/d/Y\")",description:"filter formats a date to a given format"};const date_modify={prefix:"date_modify",body:"date_modify(\"${+1 day}\")",text:"date_modify(\"+1 day\")",description:"filter modifies a date with a given modifier string"};const first={text:"first",body:"first",description:"filter returns the first \"element\" of a sequence, a mapping, or a string"};const format={prefix:"format",body:"format($1)",text:"format()",description:"filter formats a given string by replacing the placeholders (placeholders follows the sprintf notation)",example:"{% set foo = \"foo\" %}\n{{ \"I like %s and %s.\"| format(foo, \"bar\") }}\n\n{# outputs I like foo and bar #}"};const join={prefix:"join",body:"join${('optional')}",text:"join",description:"filter returns a string which is the concatenation of the items of a sequence"};const json_encode={prefix:"json_encode",body:"json_encode()",text:"json_encode()",description:"filter returns the JSON representation of a value. Internally, Twig uses the PHP json_encode function."};const keys={text:"keys",body:"keys",description:"filter returns the keys of an array. It is useful when you want to iterate over the keys of an array"};const last={text:"last",body:"last",description:"filter returns the last \"element\" of a sequence, a mapping, or a string"};const length={text:"length",body:"length",description:"filter returns the number of items of a sequence or mapping, or the length of a string"};const lower={text:"lower",body:"lower",description:"filter converts a value to lowercase"};const merge={prefix:"merge",body:"merge(${array})",text:"merge(array)",description:"filter merges an array with another array"};const nl2br={text:"nl2br",body:"nl2br",description:"filter inserts HTML line breaks before all newlines in a string"};const number_format={prefix:"number_format",body:"number_format(${0}, '${.}', '${,}')",text:"number_format",description:"filter formats numbers. It is a wrapper around PHP's number_format function"};const raw={text:"raw",body:"raw",description:"filter marks the value as being \"safe\", which means that in an environment with automatic escaping enabled this variable will not be escaped if raw is the last filter applied to it."};const replace={prefix:"replace",body:"replace('${search}' : '${replace}')",text:"replace('search' : 'replace')",description:"filter formats a given string by replacing the placeholders."};const reverse={text:"reverse",body:"reverse",description:"filter reverses a sequence, a mapping, or a string"};const round={prefix:"round",body:"${0} | round(1, '${floor}')",text:"round",description:"filter rounds a number to a given precision"};const slice={prefix:"slice",body:"slice(${start}, ${length})",text:"slice(start, length)",description:"filter extracts a slice of a sequence, a mapping, or a string"};const sort={text:"sort",body:"sort",description:"filter sorts an array"};const split={prefix:"split",body:"split('$1')",text:"split('')",description:"filter splits a string by the given delimiter and returns a list of strings"};const striptags={text:"striptags",body:"striptags",description:"filter strips SGML/XML tags and replace adjacent whitespace by one space"};const title={text:"title",body:"title",description:"filter returns a titlecased version of the value. Words will start with uppercase letters, all remaining characters are lowercase"};const trim={text:"trim",body:"trim",description:"filter strips whitespace (or other characters) from the beginning and end of a string"};const upper={text:"upper",body:"upper",description:"filter converts a value to uppercase"};const url_encode={text:"url_encode",body:"url_encode",description:"filter percent encodes a given string as URL segment or an array as query string"};var snippetsArr = {abs:abs,batch:batch,capitalize:capitalize,convert_encoding:convert_encoding,date:date,date_modify:date_modify,"default": {prefix:"default",body:"default('${default value}')",text:"default('default value')",description:"filter returns the passed default value if the value is undefined or empty, otherwise the value of the variable"},"escape": {text:"escape",body:"escape",description:"filter escapes a string for safe insertion into the final output. It supports different escaping strategies depending on the template context"},first:first,format:format,join:join,json_encode:json_encode,keys:keys,last:last,length:length,lower:lower,merge:merge,nl2br:nl2br,number_format:number_format,raw:raw,replace:replace,reverse:reverse,round:round,slice:slice,"slice [] notation": {prefix:"slice [] notation",body:"[${start}:${length}]",description:"filter extracts a slice of a sequence, a mapping, or a string"},sort:sort,split:split,striptags:striptags,title:title,trim:trim,"trim()": {prefix:"trim()",body:"trim('$1')",description:"filter strips whitespace (or other characters) from the beginning and end of a string"},upper:upper,url_encode:url_encode};
 
@@ -15,143 +14,61 @@ const editor = vscode.workspace.getConfiguration('editor');
 const config = vscode.workspace.getConfiguration('twig-language-2');
 
 function createHover(snippet, type) {
-    const example = typeof snippet.example == 'undefined' ? '' : snippet.example;
-    const description = typeof snippet.description == 'undefined' ? '' : snippet.description;
-    return new vscode.Hover({
-        language: type,
-        value: description + '\n\n' + example
-    });
+	const example =
+		typeof snippet.example == 'undefined' ? '' : snippet.example;
+	const description =
+		typeof snippet.description == 'undefined' ? '' : snippet.description;
+	return new vscode.Hover({
+		language: type,
+		value: description + '\n\n' + example,
+	});
 }
 
-function prettyDiff(document, range) {
-    const result = [];
-    let output = "";
-    let options = prettydiff.options;
-
-    let tabSize = editor.tabSize;
-    let indentChar = " ";
-
-    if (config.tabSize > 0) {
-        tabSize = config.tabSize;
-    }
-
-    if (config.indentStyle == "tab") {
-        tabSize = 0;
-        indentChar = "\t";
-    }
-
-    options.source = document.getText(range);
-    options.mode = 'beautify';
-    options.language = 'html';
-    options.lexer = 'markup';
-    options.brace_line = config.braceLine;
-    options.brace_padding = config.bracePadding;
-    options.brace_style = config.braceStyle;
-    options.braces = config.braces;
-    options.comment_line = config.commentLine;
-    options.comments = config.comments;
-    options.compressed_css = config.compressedCss;
-    options.correct = config.correct;
-    options.cssInsertLines = config.cssInsertLines;
-    options.else_line = config.elseLine;
-    options.end_comma = config.endComma;
-    options.force_attribute = config.forceAttribute;
-    options.force_indent = config.forceIndent;
-    options.format_array = config.formatArray;
-    options.format_object = config.formatObject;
-    options.function_name = config.functionName;
-    options.indent_level = config.indentLevel;
-    options.indent_char = indentChar;
-    options.indent_size = tabSize;
-    options.method_chain = config.methodChain;
-    options.never_flatten = config.neverFlatten;
-    options.new_line = config.newLine;
-    options.no_case_indent = config.noCaseIndent;
-    options.no_lead_zero = config.noLeadZero;
-    options.object_sort = config.objectSort;
-    options.preserve = config.preserve;
-    options.preserve_comment = config.preserveComment;
-    options.quote_convert = config.quoteConvert;
-    options.space = config.space;
-    options.space_close = config.spaceSlose;
-    options.tag_merge = config.tagMerge;
-    options.tag_sort = config.tagSort;
-    options.ternary_line = config.ternaryLine;
-    options.unformatted = config.unformatted;
-    options.variable_list = config.variableList;
-    options.vertical = config.vertical;
-    options.wrap = config.wrap;
-
-    output = prettydiff();
-
-    options.end = 0;
-    options.start = 0;
-
-    result.push(vscode.TextEdit.replace(range, output));
-    return result;
-}
 function activate(context) {
-    const active = vscode.window.activeTextEditor;
-    if (!active || !active.document) return
+	const active = vscode.window.activeTextEditor;
+	if (!active || !active.document) return;
 
-    registerDocType('twig');
+	registerDocType('twig');
 
-    function registerDocType(type) {
-        if (config.hover === true) {
-            context.subscriptions.push(vscode.languages.registerHoverProvider(type, {
-                provideHover(document, position) {
-                    const range = document.getWordRangeAtPosition(position);
-                    const word = document.getText(range);
+	function registerDocType(type) {
+		if (config.hover === true) {
+			context.subscriptions.push(
+				vscode.languages.registerHoverProvider(type, {
+					provideHover(document, position) {
+						const range = document.getWordRangeAtPosition(position);
+						const word = document.getText(range);
 
-                    for (const snippet in snippetsArr) {
-                        if (snippetsArr[snippet].prefix == word || snippetsArr[snippet].hover == word) {
-                            return createHover(snippetsArr[snippet], type)
-                        }
-                    }
+						for (const snippet in snippetsArr) {
+							if (
+								snippetsArr[snippet].prefix == word ||
+								snippetsArr[snippet].hover == word
+							) {
+								return createHover(snippetsArr[snippet], type);
+							}
+						}
 
-                    for (const snippet in functionsArr) {
-                        if (functionsArr[snippet].prefix == word || functionsArr[snippet].hover == word) {
-                            return createHover(functionsArr[snippet], type)
-                        }
-                    }
+						for (const snippet in functionsArr) {
+							if (
+								functionsArr[snippet].prefix == word ||
+								functionsArr[snippet].hover == word
+							) {
+								return createHover(functionsArr[snippet], type);
+							}
+						}
 
-                    for (const snippet in twigArr) {
-                        if (twigArr[snippet].prefix == word || twigArr[snippet].hover == word) {
-                            return createHover(twigArr[snippet], type)
-                        }
-                    }
-                }
-            }));
-        }
-
-        if (config.formatting === true) {
-            context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider(type, {
-                provideDocumentFormattingEdits: function (document) {
-                    const start = new vscode.Position(0, 0);
-
-                    const end = new vscode.Position(document.lineCount - 1, document.lineAt(document.lineCount - 1).text.length);
-
-                    const rng = new vscode.Range(start, end);
-                    return prettyDiff(document, rng);
-                }
-            }));
-
-            context.subscriptions.push(vscode.languages.registerDocumentRangeFormattingEditProvider(type, {
-                provideDocumentRangeFormattingEdits: function (document, range) {
-                    let end = range.end;
-
-                    if (end.character === 0) {
-                        end = end.translate(-1, Number.MAX_VALUE);
-                    } else {
-                        end = end.translate(0, Number.MAX_VALUE);
-                    }
-
-                    const rng = new vscode.Range(new vscode.Position(range.start.line, 0), end);
-                    return prettyDiff(document, rng);
-                }
-            }));
-        }
-    }
+						for (const snippet in twigArr) {
+							if (
+								twigArr[snippet].prefix == word ||
+								twigArr[snippet].hover == word
+							) {
+								return createHover(twigArr[snippet], type);
+							}
+						}
+					},
+				})
+			);
+		}
+	}
 }
 
 exports.activate = activate;
