@@ -2,7 +2,7 @@
 	"name": "twig-language-2",
 	"displayName": "Twig Language 2",
 	"description": "Snippets, Syntax Highlighting, and Hover for Twig",
-	"version": "0.10.0",
+	"version": "0.10.1",
 	"publisher": "OldStarchy",
 	"license": "MIT",
 	"contributors": [
