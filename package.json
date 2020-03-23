@@ -1,8 +1,8 @@
 {
-	"name": "twig-language-2",
-	"displayName": "Twig Language 2",
+	"name": "twig-language",
+	"displayName": "Twig Language",
 	"description": "Snippets, Syntax Highlighting, and Hover for Twig",
-	"version": "0.10.0",
+	"version": "0.10.1",
 	"publisher": "OldStarchy",
 	"license": "MIT",
 	"contributors": [
@@ -17,13 +17,13 @@
 			"url": "https://github.com/aNickzz"
 		}
 	],
-	"homepage": "https://github.com/aNickzz/vscode-twig-language-2",
+	"homepage": "https://github.com/aNickzz/twig-language",
 	"bugs": {
-		"url": "https://github.com/aNickzz/vscode-twig-language-2/issues"
+		"url": "https://github.com/aNickzz/twig-language/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/aNickzz/vscode-twig-language-2.git"
+		"url": "https://github.com/aNickzz/twig-language.git"
 	},
 	"icon": "images/icon.png",
 	"engines": {

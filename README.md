@@ -1,14 +1,10 @@
 This is a fork from the <a href="https://marketplace.visualstudio.com/items?itemName=mblode.twig-language-2">original by mblode</a> with some snippet changes.
 
-<!-- <a href="https://marketplace.visualstudio.com/items?itemName=mblode.twig-language-2">
-  <img src="https://github.com/mblode/vscode-twig-language-2/blob/master/images/icon.png?raw=true" alt="" width=100 height=100>
-</a> -->
-
-<h1>VS Code Twig Language 2 👋</h1>
+<h1>Twig Language</h1>
 
 <p>
   <img src="https://img.shields.io/badge/version-0.8.8-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/aNickzz/vscode-twig-language-2/blob/master/LICENSE.md">
+  <a href="https://github.com/aNickzz/twig-language/blob/master/LICENSE.md">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
   </a>
 </p>
@@ -18,28 +14,11 @@ This is a fork from the <a href="https://marketplace.visualstudio.com/items?item
 - Emmet
 - Hover
 
-## What has changed since version 1?
-
-This extension does **not** have HTML Intellisense. If you need HTML Intellisense (which can be quite useful), please download my other Twig Language extension: https://github.com/mblode/vscode-twig-language.
-
-I have created a new extension to fix the issues that I (and all of you) were having with file association, commenting and VS Code UI issues.
-
-Simply add these lines to your VS Code settings to get emmet working and also to associate HTML files as twig syntax.
-
-```
-"files.associations": {
-    "*.html": "twig"
-},
-"emmet.includeLanguages": {
-    "twig": "html"
-},
-```
-
 ## Installation
 
 Install through Visual Studio Code extensions. Search for `Twig Language 2`
 
-[Visual Studio Code Market Place: Twig Language 2](https://marketplace.visualstudio.com/items?itemName=mblode.twig-language-2)
+[Visual Studio Code Market Place: Twig Language 2](https://marketplace.visualstudio.com/items?itemName=OldStarchy.twig-language)
 
 ## Documentation
 
@@ -213,7 +192,7 @@ info            All craft globals (site info, date, users, template tags)
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome !<br />Feel free to check [issues page](https://github.com/aNickzz/vscode-twig-language-2/issues).
+Contributions, issues and feature requests are welcome !<br />Feel free to check [issues page](https://github.com/aNickzz/twig-language/issues).
 
 ## Show your support
 
@@ -224,4 +203,5 @@ Give a ⭐️ if this project helped you !
 <!-- TODO: copyright? -->
 
 Copyright © 2019 [Matthew Blode](https://github.com/mblode).<br />
-This project is [MIT](https://github.com/aNickzz/vscode-twig-language-2/blob/master/LICENSE.md) licensed.
+Copyright © 2020 [Nicholas Sorokin](https://github.com/aNickzz).<br />
+This project is [MIT](https://github.com/aNickzz/twig-language/blob/master/LICENSE.md) licensed.

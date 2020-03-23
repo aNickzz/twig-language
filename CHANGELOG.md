@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.10.1] - 2020-03-23
+
+### Changed
+
+- Use single quotes instead of double in all snippets.
+
 ## [0.10.0] - 2020-03-06
 
 ### Removed
