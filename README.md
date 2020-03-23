@@ -16,13 +16,13 @@ This is a fork from the <a href="https://marketplace.visualstudio.com/items?item
 
 ## Installation
 
-Install through Visual Studio Code extensions. Search for `Twig Language 2`
+Install through Visual Studio Code extensions. Search for `Twig Language`
 
-[Visual Studio Code Market Place: Twig Language 2](https://marketplace.visualstudio.com/items?itemName=OldStarchy.twig-language)
+[Visual Studio Code Market Place: Twig Language](https://marketplace.visualstudio.com/items?itemName=OldStarchy.twig-language)
 
 ## Documentation
 
-Twig Language 2 is a Visual Studio Code extension that provides snippets, syntax highlighting, and hover for the Twig file format.
+Twig Language is a Visual Studio Code extension that provides snippets, syntax highlighting, and hover for the Twig file format.
 
 ### Twig syntax highlighting and language support
 
@@ -30,7 +30,7 @@ This extension provides language support for the Twig syntax.
 
 ### Information about Twig code on hover
 
-VS Code Twig language 2 shows information about the symbol/object that's below the mouse cursor when you hover within Twig files.
+VS Code Twig language shows information about the symbol/object that's below the mouse cursor when you hover within Twig files.
 
 ### Craft CMS/Twig code snippets
 

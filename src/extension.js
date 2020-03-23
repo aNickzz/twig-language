@@ -4,7 +4,7 @@ import functionsArr from './hover/functions.json';
 import twigArr from './hover/twig.json';
 
 const editor = vscode.workspace.getConfiguration('editor');
-const config = vscode.workspace.getConfiguration('twig-language-2');
+const config = vscode.workspace.getConfiguration('twig-language');
 
 function createHover(snippet, type) {
 	const example =

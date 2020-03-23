@@ -2,7 +2,7 @@
 	"name": "twig-language",
 	"displayName": "Twig Language",
 	"description": "Snippets, Syntax Highlighting, and Hover for Twig",
-	"version": "0.10.1",
+	"version": "0.10.2",
 	"publisher": "OldStarchy",
 	"license": "MIT",
 	"contributors": [
@@ -81,9 +81,9 @@
 		],
 		"configuration": {
 			"type": "object",
-			"title": "Twig Language 2",
+			"title": "Twig Language",
 			"properties": {
-				"twig-language-2.hover": {
+				"twig-language.hover": {
 					"type": "boolean",
 					"default": true,
 					"description": "Whether to enable/disable Twig hover."
