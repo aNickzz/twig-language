@@ -5,7 +5,7 @@
 			"{% set asset = ${1:entry.assetFieldHandle}.one() %}",
 			"",
 			"{% if asset %}",
-			"\t<img src=\"{{ asset.getUrl(\"${2:thumb}\") }}\" width=\"{{ asset.getWidth(\"${2:thumb}\") }}\" height=\"{{ asset.getHeight(\"${2:thumb}\") }}\" alt=\"{{ asset.title }}\">",
+			"\t<img src=\"{{ asset.getUrl('${2:thumb}') }}\" width=\"{{ asset.getWidth('${2:thumb}') }}\" height=\"{{ asset.getHeight('${2:thumb}') }}\" alt=\"{{ asset.title }}\">",
 			"{% endif %}"
 		],
 		"description": "asset",
@@ -15,11 +15,11 @@
 		"prefix": "assets",
 		"body": [
 			"{% for image in craft.assets.",
-			"\t.sourceId(\"${1:1}\")",
-			"\t.kind(\"${2:image}\")",
+			"\t.sourceId('${1:1}')",
+			"\t.kind('${2:image}')",
 			"\t.limit(${3:10})",
 			"}).all() %}",
-			"\t<img src=\"{{ image.url${4:(\"${5:thumb}\")} }}\" width=\"${6:200}\" height=\"${7:200}\" alt=\"{{ image.title }}\">",
+			"\t<img src=\"{{ image.url${4:('${5:thumb}')} }}\" width=\"${6:200}\" height=\"${7:200}\" alt=\"{{ image.title }}\">",
 			"{% endfor %}"
 		],
 		"description": "craft.assets",
@@ -28,7 +28,7 @@
 	"autoescape": {
 		"prefix": "autoescape",
 		"body": [
-			"{% autoescape \"${1:type}\" %}",
+			"{% autoescape '${1:type}' %}",
 			"\t$0",
 			"{% endautoescape %}"
 		],
@@ -56,7 +56,7 @@
 	"blockf": {
 		"prefix": "blockf",
 		"body": [
-			"{{ block(\"${1:name}\") }}$0"
+			"{{ block('${1:name}') }}$0"
 		],
 		"description": "blockf",
 		"scope": "text.html.twig"
@@ -122,7 +122,7 @@
 			"\t{% endif %}",
 			"</form>",
 			"",
-			"<p><a href=\"{{ url(\"forgotpassword\") }}\">Forgot your password?</a></p>"
+			"<p><a href=\"{{ url('forgotpassword') }}\">Forgot your password?</a></p>"
 		],
 		"description": "craft.user - example login form",
 		"scope": "text.html.twig"
@@ -133,7 +133,7 @@
 			"<form method=\"post\" accept-charset=\"UTF-8\">",
 			"\t{{ csrfInput() }}",
 			"\t<input type=\"hidden\" name=\"action\" value=\"users/save-user\">",
-			"\t{{ redirectInput(\"users/\"~currentUser.username) }}",
+			"\t{{ redirectInput('users/' ~ currentUser.username) }}",
 			"\t<input type=\"hidden\" name=\"userId\" value=\"{{ currentUser.id }}\">",
 			"",
 			"\t<label for=\"location\">Location</label>",
@@ -154,7 +154,7 @@
 			"<form method=\"post\" accept-charset=\"UTF-8\">",
 			"\t{{ csrfInput() }}",
 			"\t<input type=\"hidden\" name=\"action\" value=\"users/save-user\">",
-			"\t{{ redirectInput(\"\") }}",
+			"\t{{ redirectInput('') }}",
 			"",
 			"\t{% macro errorList(errors) %}",
 			"\t\t{% if errors %}",
@@ -173,7 +173,7 @@
 			"\t\t{%- if user is defined %} value=\"{{ user.username }}\"{% endif -%}>",
 			"",
 			"\t{% if user is defined %}",
-			"\t\t{{ errorList(user.getErrors(\"username\")) }}",
+			"\t\t{{ errorList(user.getErrors('username')) }}",
 			"\t{% endif %}",
 			"",
 			"\t<h3><label for=\"email\">Email</label></h3>",
@@ -181,14 +181,14 @@
 			"\t\t{%- if user is defined %} value=\"{{ user.email }}\"{% endif %}>",
 			"",
 			"\t{% if user is defined %}",
-			"\t\t{{ errorList(user.getErrors(\"email\")) }}",
+			"\t\t{{ errorList(user.getErrors('email')) }}",
 			"\t{% endif %}",
 			"",
 			"\t<h3><label for=\"password\">Password</label></h3>",
 			"\t<input id=\"password\" type=\"password\" name=\"password\">",
 			"",
 			"\t{% if user is defined %}",
-			"\t\t{{ errorList(user.getErrors(\"password\")) }}",
+			"\t\t{{ errorList(user.getErrors('password')) }}",
 			"\t{% endif %}",
 			"",
 			"\t<input type=\"submit\" value=\"Register\">",
@@ -203,7 +203,7 @@
 			"<form method=\"post\" accept-charset=\"UTF-8\">",
 			"\t{{ csrfInput() }}",
 			"\t<input type=\"hidden\" name=\"action\" value=\"users/send-password-reset-email\">",
-			"\t{{ redirectInput(\"\") }}",
+			"\t{{ redirectInput('') }}",
 			"",
 			"\t<h3><label for=\"loginName\">Username or email</label></h3>",
 			"\t<input id=\"loginName\" type=\"text\" name=\"loginName\"",
@@ -251,7 +251,7 @@
 	"formsearch": {
 		"prefix": "formsearch",
 		"body": [
-			"<form action=\"{{ url(\"search/results\") }}\">",
+			"<form action=\"{{ url('search/results') }}\">",
 			"\t<input type=\"search\" name=\"q\" placeholder=\"Search\">",
 			"\t<input type=\"submit\" value=\"Go\">",
 			"</form>"
@@ -264,8 +264,8 @@
 		"body": [
 			"<h1>Search Results</h1>",
 			"",
-			"{% set query = craft.app.request.getParam(\"q\") %}",
-			"{% set entries = craft.entries.search(query).orderBy(\"score\").all() %}",
+			"{% set query = craft.app.request.getParam('q') %}",
+			"{% set entries = craft.entries.search(query).orderBy('score').all() %}",
 			"",
 			"{% if entries | length %}",
 			"\t<p>{{ entries | length }} results:</p>",
@@ -318,13 +318,13 @@
 		"prefix": "assetso",
 		"body": [
 			"{% set assets = craft.assets({",
-			"\tsourceId: \"${1:1}\",",
-			"\tkind: \"${2:image}\",",
+			"\tsourceId: '${1:1}',",
+			"\tkind: '${2:image}',",
 			"\tlimit: ${3:10}",
 			"}).all() %}",
 			"",
 			"{% for image in assets %}",
-			"\t<img src=\"{{ image.url${4:(\"${5:thumb}\")} }}\" width=\"${6:200}\" height=\"${7:200}\" alt=\"{{ image.title }}\">",
+			"\t<img src=\"{{ image.url${4:('${5:thumb}')} }}\" width=\"${6:200}\" height=\"${7:200}\" alt=\"{{ image.title }}\">",
 			"{% endfor %}"
 		],
 		"description": "craft.assets - object syntax",
@@ -334,8 +334,8 @@
 		"prefix": "categorieso",
 		"body": [
 			"{% set categories = craft.categories({",
-			"\tgroup: \"${1:categoryGroupHandle}\",",
-			"\tlimit: \"${2:11}\"",
+			"\tgroup: '${1:categoryGroupHandle}',",
+			"\tlimit: '${2:11}'",
 			"}).all() %}",
 			"",
 			"<ul>",
@@ -359,7 +359,7 @@
 		"body": [
 			"<ul>",
 			"\t{% nav category in craft.categories",
-			"\t\t.group(\"${1:categoryGroupHandle}\")",
+			"\t\t.group('${1:categoryGroupHandle}')",
 			"\t\t.limit(${2:11})",
 			"\t\t.all()",
 			"\t%}",
@@ -381,8 +381,8 @@
 		"prefix": "entrieso",
 		"body": [
 			"{% set entries = craft.entries({",
-			"\tsection: \"${1:sectionName}\",",
-			"\tlimit: \"${2:10}\"",
+			"\tsection: '${1:sectionName}',",
+			"\tlimit: '${2:10}'",
 			"}).all() %}",
 			"",
 			"{% for entry in entries %}",
@@ -396,7 +396,7 @@
 		"prefix": "entries",
 		"body": [
 			"{% for entry in craft.entries",
-			"\t.section(\"${1:sectionName}\")",
+			"\t.section('${1:sectionName}')",
 			"\t.limit(${2:10})",
 			"\t.all()",
 			"%}",
@@ -436,29 +436,29 @@
 	"replace": {
 		"prefix": "replace",
 		"body": [
-			"{{ ${1:$TM_SELECTED_TEXT} | replace(\"search\", \"replace\") }}$0"
+			"{{ ${1:$TM_SELECTED_TEXT} | replace('search', 'replace') }}$0"
 		],
-		"description": "replace with | replace(\"search\", \"replace\")"
+		"description": "replace with | replace('search', 'replace')"
 	},
 	"replacex": {
 		"prefix": "replacex",
 		"body": [
-			"{{ ${1:$TM_SELECTED_TEXT} | replace(\"/(search)/i\", \"replace\") }}$0"
+			"{{ ${1:$TM_SELECTED_TEXT} | replace('/(search)/i', 'replace') }}$0"
 		],
-		"description": "replace regex with | replace(\"/(search)/i\", \"replace\")"
+		"description": "replace regex with | replace('/(search)/i', 'replace')"
 	},
 	"split": {
 		"prefix": "split",
 		"body": [
-			"{{ ${1:$TM_SELECTED_TEXT} | split(\"\\n\") }}$0"
+			"{{ ${1:$TM_SELECTED_TEXT} | split('\\n') }}$0"
 		],
-		"description": "split on | split (\"\\n\")"
+		"description": "split on | split ('\\n')"
 	},
 	"tagso": {
 		"prefix": "tagso",
 		"body": [
 			"{% set tags = craft.tags({",
-			"\tgroup: \"${1:tagGroupHandle}\"",
+			"\tgroup: '${1:tagGroupHandle}'",
 			"}).all() %}",
 			"",
 			"<ul>",
@@ -474,7 +474,7 @@
 		"prefix": "tags",
 		"body": [
 			"<ul>",
-			"\t{% for tag in craft.tags.group(\"${1:tagGroupHandle}\").all() %}",
+			"\t{% for tag in craft.tags.group('${1:tagGroupHandle}').all() %}",
 			"\t\t<li>{{ tag }}</li>",
 			"\t{% endfor %}",
 			"</ul>"
@@ -486,7 +486,7 @@
 		"prefix": "userso",
 		"body": [
 			"{% set users = craft.users({",
-			"\tgroup: \"${1:userGroupHandle}\"",
+			"\tgroup: '${1:userGroupHandle}'",
 			"}).all() %}",
 			"",
 			"{% for user in users %}",
@@ -499,7 +499,7 @@
 	"users": {
 		"prefix": "users",
 		"body": [
-			"{% for user in craft.users.group(\"${1:userGroupHandle}\").all() %}",
+			"{% for user in craft.users.group('${1:userGroupHandle}').all() %}",
 			"\t{{ user.firstName }} {{ user.lastName }}",
 			"{% endfor %}"
 		],
@@ -562,8 +562,7 @@
 	"else": {
 		"prefix": "else",
 		"body": [
-			"{% else %}",
-			"\t$0"
+			"{% else %}$0"
 		],
 		"description": "else",
 		"scope": "text.html.twig"
@@ -773,7 +772,7 @@
 	"from": {
 		"prefix": "from",
 		"body": [
-			"{% from \"${1:template}\" import \"${2:macro}\" %}$0"
+			"{% from '${1:template}' import '${2:macro}' %}$0"
 		],
 		"description": "from",
 		"scope": "text.html.twig"
@@ -854,7 +853,7 @@
 		"prefix": "inckv",
 		"body": [
 			"{% include \"${1:template}\" with {",
-			"\t${2:key}: ${3:\"${4:value}\"}",
+			"\t${2:key}: ${3:'${4:value}'}",
 			"} %}"
 		],
 		"description": "include w/ key/value",
@@ -879,7 +878,7 @@
 	"incp": {
 		"prefix": "incp",
 		"body": [
-			"{% include \"${1:template}\"${2: with ${3:params} }%}$0"
+			"{% include '${1:template}'${2: with ${3:params} }%}$0"
 		],
 		"description": "include w/ params",
 		"scope": "text.html.twig"
@@ -887,7 +886,7 @@
 	"css1": {
 		"prefix": "cssr",
 		"body": [
-			"{% do view.registerCssFile(\"${1:/resources/css/global.css}\") %}"
+			"{% do view.registerCssFile('${1:/resources/css/global.css}') %}"
 		],
 		"description": "registerCssFile",
 		"scope": "text.html.twig"
@@ -905,7 +904,7 @@
 	"js1": {
 		"prefix": "jsr",
 		"body": [
-			"{% do view.registerJsFile(\"${1:/resources/js/global.js}\") %}"
+			"{% do view.registerJsFile('${1:/resources/js/global.js}') %}"
 		],
 		"description": "registerJsFile",
 		"scope": "text.html.twig"
@@ -1058,13 +1057,13 @@
 			"the paginateBase variable in the template we are including the ",
 			"pagination in.",
 			"",
-			"{% set paginateBase = \"/blog/p\" %}",
+			"{% set paginateBase = '/blog/p' %}",
 			"#}",
 			"",
 			"{% if pageInfo.totalPages > 1 %}",
 			"<ul>",
-			"\t{% if pageInfo.currentPage != \"1\" %}",
-			"\t\t<li><a href=\"{{ paginateBase ~ \"1\" }}\">First Page</a></li>",
+			"\t{% if pageInfo.currentPage != '1' %}",
+			"\t\t<li><a href=\"{{ paginateBase ~ '1' }}\">First Page</a></li>",
 			"\t{% endif %}",
 			"",
 			"\t{% if pageInfo.prevUrl %}",
@@ -1101,7 +1100,7 @@
 	"getparam": {
 		"prefix": "getparam",
 		"body": [
-			"craft.app.request.getParam(${1:\"Query String or Post Variable Name\"})"
+			"craft.app.request.getParam(${1:'Query String or Post Variable Name'})"
 		],
 		"description": "request getParam",
 		"scope": "text.html.twig"
@@ -1109,7 +1108,7 @@
 	"getbodyparam": {
 		"prefix": "getbodyparam",
 		"body": [
-			"craft.app.request.getBodyParam(${1:\"postVariableName\"})"
+			"craft.app.request.getBodyParam(${1:'postVariableName'})"
 		],
 		"description": "request getBodyParam",
 		"scope": "text.html.twig"
@@ -1117,7 +1116,7 @@
 	"getqueryparam": {
 		"prefix": "getqueryparam",
 		"body": [
-			"craft.app.request.getQueryParam(${1:\"queryStringName\"})"
+			"craft.app.request.getQueryParam(${1:'queryStringName'})"
 		],
 		"description": "request getQueryParam",
 		"scope": "text.html.twig"
@@ -1220,7 +1219,7 @@
 	"urla": {
 		"prefix": "urla",
 		"body": [
-			"url(\"${1:path}\", ${2:{foo:\"1\", bar:\"2\"\\}}, ${3:\"http\"}, ${4:false})$0"
+			"url('${1:path}', ${2:{foo:'1', bar:'2'\\}}, ${3:'http'}, ${4:false})$0"
 		],
 		"description": "url w/ arguments",
 		"scope": "text.html.twig"
@@ -1228,7 +1227,7 @@
 	"url": {
 		"prefix": "url",
 		"body": [
-			"url(\"${1:path}\")$0"
+			"url('${1:path}')$0"
 		],
 		"description": "url",
 		"scope": "text.html.twig"
@@ -1236,7 +1235,7 @@
 	"use": {
 		"prefix": "use",
 		"body": [
-			"{% use \"${1:template}\" %}$0"
+			"{% use '${1:template}' %}$0"
 		],
 		"description": "use",
 		"scope": "text.html.twig"
